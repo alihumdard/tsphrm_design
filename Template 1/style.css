@@ -4,10 +4,12 @@ body {
 .container{
     background: #fff;
     height: 500px;
+    margin-left: 165px;
 }
 .container h3{
     font-size: 50px;
     margin-bottom: 100px;
+    margin-left: -135px;
 }
 
 .row i{
