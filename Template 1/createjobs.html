@@ -1,87 +1,607 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="css/bootstrap.css">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <title>Create Jobs</title>
-</head>
-<body>
-   <div class="container mt-5">
-    <h3 class="py-3 text-center">POST Categories</h3>
-    <div class="row mb-5">
-        <div class="col-md-3">
-            <i class="fa-solid fa-font-awesome"></i>
-            <br>
-           <a href="newemployee.html" target="_blank">Web Developers</a>
-           <div id="newjob">
-            <a href="">23, new jobs</a>
-           </div>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0">
+        <link rel="shortcut icon" type="image/x-icon" href="assets/img/favicon.ico">
+        <title>Preclinic - Medical & Hospital - Bootstrap 4 Admin Template</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/font-awesome.min.css">
+        <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+        <!--[if lt IE 9]>
+            <script src="assets/js/html5shiv.min.js"></script>
+            <script src="assets/js/respond.min.js"></script>
+        <![endif]-->
+    </head>
+    <style>
+.header {
+	background-color: #009efb;
+	left: 0;
+	position: fixed;
+	right: 0;
+	top: 0;
+	z-index: 1039;
+	height: 50px;
+	box-shadow: 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+.header .header-left {
+	float: left;
+	height: 50px;
+	padding: 0 20px;
+	position: relative;
+	text-align: center;
+	width: 230px;
+	z-index: 1;
+}
+.logo {
+	align-items: center;
+	display: flex;
+	height: 50px;
+	justify-content: center;
+}
+.logo span {
+	color: #fff;
+	font-size: 18px;
+	font-weight: 500;
+	margin-left: 10px;
+}
+.header .navbar-nav .badge {
+	position: absolute;
+	right: 7px;
+	top: 4px;
+}
+.header .dropdown-menu > li > a {
+	position: relative;
+}
+.header .dropdown-toggle:after {
+	display: none;
+}
+.header .has-arrow .dropdown-toggle:after {
+	display: inline-block;
+}
+.page-title-box {
+	border-radius: 0;
+	height: 50px;
+	margin-bottom: 0;
+	padding: 14px 20px;
+}
+.page-title-box h3 {
+	color: #fff;
+	font-size: 25px;
+	
+	margin: 0;
+}
+.user-menu {
+	margin: 0;
+	position: relative;
+	z-index: 99;
+}
+.user-menu.nav > li > a {
+	color: #fff;
+	font-size: 16px;
+	line-height: 50px;
+	padding: 0 15px;
+	height: 50px;
+}
+.user-menu.nav > li > a:hover,
+.user-menu.nav > li > a:focus {
+	background-color: rgba(0, 0, 0, 0.2);
+}
+.user-img {
+	display: inline-block;
+	position: relative;
+}
+.header .user-img img {
+	width: 24px;
+}
+.user-img .status {
+	border: 2px solid #fff;
+	bottom: 0;
+	height: 10px;
+	position: absolute;
+	right: 0;
+	width: 10px;
+}
+.user-menu .user-img .status {
+	bottom: 10px;
+}
+.user-menu .dropdown-menu {
+	min-width: 136px;
+}
+.user-menu .bg-primary {
+	background-color: #009efb !important;
+}
+.status {
+	background-color: #ccc;
+	border-radius: 50%;
+	display: inline-block;
+	height: 10px;
+	width: 10px;
+}
+.status.online {
+	background-color: #55ce63;
+}
+.status.offline {
+	background-color: #f62d51;
+}
+.status.away {
+	background-color: #faa937;
+}
+
+.sidebar {
+	box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.1);
+	top: 50px;
+	width: 230px;
+	z-index: 1039;
+	background-color: #fff;
+	bottom: 0;
+	margin-top: 0px;
+	position: fixed;
+	left: 0;
+	transition: all 0.2s ease-in-out;
+}
+.sidebar.opened {
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.sidebar-inner {
+	height: 100%;
+	transition: all 0.2s ease-in-out 0s;
+}
+.sidebar-menu ul {
+	font-size: 14px;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+.sidebar-menu li a {
+	color: #888;
+	display: block;
+	font-size: 15px;
+	height: auto;
+	padding: 0 20px;
+}
+.sidebar-menu li a:hover {
+	color: #009efb;
+}
+.sidebar-menu li.active a {
+	color: #009efb;
+	background-color: #f3f3f3;
+}
+.menu-title {
+	color: #333;
+	font-size: 15px;
+	font-weight: 500;
+	padding: 12px 20px;
+}
+.menu-title > i {
+	float: right;
+	line-height: 40px;
+}
+.sidebar-menu li.menu-title a {
+	color: #009efb;
+	display: inline-block;
+	float: right;
+	padding: 0;
+}
+.sidebar-menu li.menu-title a.btn {
+	color: #fff;
+	display: block;
+	float: none;
+	font-size: 15px;
+	line-height: inherit;
+	margin-bottom: 15px;
+}
+.sidebar-menu ul ul a.active {
+	color: #009efb;
+	text-decoration: underline;
+}
+.mobile-user-menu {
+	color: #fff;
+	display: none;
+	font-size: 24px;
+	height: 50px;
+	line-height: 50px;
+	padding: 0 20px;
+	position: absolute;
+	right: 0;
+	text-align: right;
+	top: 0;
+	width: 50px;
+	z-index: 10;
+}
+.mobile-user-menu > a {
+	color: #fff;
+	padding: 0;
+}
+.mobile-user-menu > a:hover {
+	color: #fff;
+}
+.mobile-user-menu > .dropdown-menu > a {
+    line-height: 23px;
+}
+.profile-rightbar {
+	display: none !important;
+	color: #009efb;
+	font-size: 26px;
+	margin-left: 15px;
+}
+.fixed-sidebar-right {
+	position: fixed;
+	top: 60px;
+	right: 0;
+	width: 300px;
+	margin-right: -300px;
+	bottom: 0;
+	z-index: 101;
+	-webkit-transition: all 0.4s ease;
+	-moz-transition: all 0.4s ease;
+	transition: all 0.4s ease;
+}
+.mobile_btn {
+	display: none;
+}
+.sidebar .sidebar-menu > ul > li > a span {
+	transition: all 0.2s ease-in-out 0s;
+	display: inline-block;
+	margin-left: 10px;
+	white-space: nowrap;
+}
+.sidebar .sidebar-menu > ul > li > a span.badge {
+	color: #fff;
+	margin-left: auto;
+}
+.sidebar-menu ul ul a {
+	display: block;
+	font-size: 14px;
+	padding: 9px 10px 9px 50px;
+	position: relative;
+}
+.sidebar-menu ul ul {
+	background-color: #f3f3f3;
+	display: none;
+}
+.sidebar-menu ul ul ul a {
+	padding-left: 70px;
+}
+.sidebar-menu ul ul ul ul a {
+	padding-left: 90px;
+}
+.sidebar-menu > ul > li {
+	position: relative;
+}
+.sidebar-menu .menu-arrow {
+	-webkit-transition: -webkit-transform 0.15s;
+	-o-transition: -o-transform 0.15s;
+	transition: transform .15s;
+	position: absolute;
+	right: 15px;
+	display: inline-block;
+	font-family: 'FontAwesome';
+	text-rendering: auto;
+	line-height: 40px;
+	font-size: 18px;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-transform: translate(0, 0);
+	-ms-transform: translate(0, 0);
+	-o-transform: translate(0, 0);
+	transform: translate(0, 0);
+	line-height: 18px;
+	top: 15px;
+}
+.sidebar-menu .menu-arrow:before {
+	content: "\f105";
+}
+.sidebar-menu li a.subdrop .menu-arrow {
+	-ms-transform: rotate(90deg);
+	-webkit-transform: rotate(90deg);
+	-o-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+.sidebar-menu ul ul a .menu-arrow {
+	top: 6px;
+}
+.sidebar-menu a {
+	transition: unset;
+	-moz-transition: unset;
+	-o-transition: unset;
+	-ms-transition: unset;
+	-webkit-transition: unset;
+}
+.sidebar-menu > ul > li > a {
+	padding: 12px 20px;
+	align-items: center;
+	display: flex;
+	justify-content: flex-start;
+	position: relative;
+	transition: all 0.2s ease-in-out 0s;
+}
+.sidebar-menu ul li a i {
+	align-items: center;
+	display: inline-flex;
+	font-size: 18px;
+	min-height: 24px;
+	line-height: 18px;
+	width: 20px;
+	transition: all 0.2s ease-in-out 0s;
+}
+.sidebar-menu ul li.menu-title a i {
+	font-size: 16px;
+	margin-right: 0;
+	text-align: right;
+	width: auto;
+}
+    </style>
+    <body>
+        <div class="header">
+                        <div class="header-left">
+                            <a href="index-2.html" class="logo">
+                                <img src="assets/img/logo.png" width="35" height="35" alt=""> <span>Preclinic</span>
+                            </a>
+                        </div>
+                        <a id="toggle_btn" href="javascript:void(0);"><i class="fa fa-bars"></i></a>
+                        <a id="mobile_btn" class="mobile_btn float-left" href="#sidebar"><i class="fa fa-bars"></i></a>
+                        <ul class="nav user-menu float-right">
+                            <li class="nav-item dropdown d-none d-sm-block">
+                                <a href="#" class="dropdown-toggle nav-link" data-toggle="dropdown"><i class="fa fa-bell-o"></i> <span class="badge badge-pill bg-danger float-right">3</span></a>
+                                <div class="dropdown-menu notifications">
+                                    <div class="topnav-dropdown-header">
+                                        <span>Notifications</span>
+                                    </div>
+                                    <div class="drop-scroll">
+                                        <ul class="notification-list">
+                                            <li class="notification-message">
+                                                <a href="activities.html">
+                                                    <div class="media">
+                                                        <span class="avatar">
+                                                            <img alt="John Doe" src="assets/img/user.jpg" class="img-fluid">
+                                                        </span>
+                                                        <div class="media-body">
+                                                            <p class="noti-details"><span class="noti-title">John Doe</span> added new task <span class="noti-title">Patient appointment booking</span></p>
+                                                            <p class="noti-time"><span class="notification-time">4 mins ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-message">
+                                                <a href="activities.html">
+                                                    <div class="media">
+                                                        <span class="avatar">V</span>
+                                                        <div class="media-body">
+                                                            <p class="noti-details"><span class="noti-title">Tarah Shropshire</span> changed the task name <span class="noti-title">Appointment booking with payment gateway</span></p>
+                                                            <p class="noti-time"><span class="notification-time">6 mins ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-message">
+                                                <a href="activities.html">
+                                                    <div class="media">
+                                                        <span class="avatar">L</span>
+                                                        <div class="media-body">
+                                                            <p class="noti-details"><span class="noti-title">Misty Tison</span> added <span class="noti-title">Domenic Houston</span> and <span class="noti-title">Claire Mapes</span> to project <span class="noti-title">Doctor available module</span></p>
+                                                            <p class="noti-time"><span class="notification-time">8 mins ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-message">
+                                                <a href="activities.html">
+                                                    <div class="media">
+                                                        <span class="avatar">G</span>
+                                                        <div class="media-body">
+                                                            <p class="noti-details"><span class="noti-title">Rolland Webber</span> completed task <span class="noti-title">Patient and Doctor video conferencing</span></p>
+                                                            <p class="noti-time"><span class="notification-time">12 mins ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                            <li class="notification-message">
+                                                <a href="activities.html">
+                                                    <div class="media">
+                                                        <span class="avatar">V</span>
+                                                        <div class="media-body">
+                                                            <p class="noti-details"><span class="noti-title">Bernardo Galaviz</span> added new task <span class="noti-title">Private chat module</span></p>
+                                                            <p class="noti-time"><span class="notification-time">2 days ago</span></p>
+                                                        </div>
+                                                    </div>
+                                                </a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                    <div class="topnav-dropdown-footer">
+                                        <a href="activities.html">View all Notifications</a>
+                                    </div>
+                                </div>
+                            </li>
+                            <li class="nav-item dropdown d-none d-sm-block">
+                                <a href="javascript:void(0);" id="open_msg_box" class="hasnotifications nav-link"><i class="fa fa-comment-o"></i> <span class="badge badge-pill bg-danger float-right">8</span></a>
+                            </li>
+                            <li class="nav-item dropdown has-arrow">
+                                <a href="#" class="dropdown-toggle nav-link user-link" data-toggle="dropdown">
+                                    <span class="user-img">
+                                        <img class="rounded-circle" src="assets/img/user.jpg" width="24" alt="Admin">
+                                        <span class="status online"></span>
+                                    </span>
+                                    <span>Admin</span>
+                                </a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="profile.html">My Profile</a>
+                                    <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                                    <a class="dropdown-item" href="settings.html">Settings</a>
+                                    <a class="dropdown-item" href="login.html">Logout</a>
+                                </div>
+                            </li>
+                        </ul>
+                        <div class="dropdown mobile-user-menu float-right">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-expanded="false"><i class="fa fa-ellipsis-v"></i></a>
+                            <div class="dropdown-menu dropdown-menu-right">
+                                <a class="dropdown-item" href="profile.html">My Profile</a>
+                                <a class="dropdown-item" href="edit-profile.html">Edit Profile</a>
+                                <a class="dropdown-item" href="settings.html">Settings</a>
+                                <a class="dropdown-item" href="login.html">Logout</a>
+                            </div>
+                        </div>
         </div>
-        <div class="col-md-3">
-            <i class="fa-solid fa-graduation-cap"></i>
-            <br>
-           <a href="#">Graphic Desiging</a>
-           <div id="newjob">
-            <a href="">23, new jobs</a>
-           </div>
+        <div class="sidebar" id="sidebar">
+                        <div class="sidebar-inner slimscroll">
+                            <div id="sidebar-menu" class="sidebar-menu">
+                                <ul>
+                                    <li class="menu-title">Main</li>
+                                    <li class="active">
+                                        <a href="index-2.html"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-user"></i> <span>New Hirings</span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="createjobs.html">Create Jobs</a></li>
+                                            <li><a href="leaves.html">Candidates</a></li>
+                                            <li><a href="holidays.html">Stage 1 Interview</a></li>
+                                            <li><a href="holidays.html">Stage 2 Interview</a></li>
+                                            <li><a href="attendance.html">Attendance</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-user"></i> <span> Employees </span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="employees.html">Employees List</a></li>
+                                            <li><a href="attendance.html">Attendance</a></li>
+                                            <li><a href="leaves.html">Leaves</a></li>
+                                            <li><a href="holidays.html">Holidays</a></li>
+                                            <li><a href="attendance.html">Employee Strikes</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-commenting-o"></i> <span> Benefits</span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="blog.html">Gym Membership</a></li>
+                                            <li><a href="blog-details.html">Resturant Discounts</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-book"></i> <span> Payroll </span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="salary.html"> Employee Salary </a></li>
+                                            <li><a href="salary-view.html"> Payslip </a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="assets.html"><i class="fa fa-cube"></i> <span>Contacts</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="doctors.html"><i class="fa fa-user-md"></i> <span>Progress</span></a>
+                                    </li>
+                                    <li>
+                                        <a href="departments.html"><i class="fa fa-hospital-o"></i> <span>Departments</span></a>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-money"></i> <span> Accounts </span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="invoices.html">Invoices</a></li>
+                                            <li><a href="payments.html">Payments</a></li>
+                                            <li><a href="expenses.html">Expenses</a></li>
+                                            <li><a href="taxes.html">Taxes</a></li>
+                                            <li><a href="provident-fund.html">Provident Fund</a></li>
+                                        </ul>
+                                    </li>
+                                    <li class="submenu">
+                                        <a href="#"><i class="fa fa-envelope"></i> <span> Email</span> <span class="menu-arrow"></span></a>
+                                        <ul style="display: none;">
+                                            <li><a href="compose.html">Compose Mail</a></li>
+                                            <li><a href="inbox.html">Inbox</a></li>
+                                            <li><a href="mail-view.html">Mail View</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="settings.html"><i class="fa fa-cog"></i> <span>Settings</span></a>
+                                    </li>
+                                    
+                                </ul>
+                            </div>
+                        </div>
         </div>
-        <div class="col-md-3">
-            <i class="fa-solid fa-coins"></i>
-            <br>
-           <a href="#" class="ml-3">Social Media</a>
-           <div id="newjob">
-            <a href="">23, new jobs</a>
-           </div>
+        <div class="page-wrapper">
+                        <div class="container mt-5">
+                            <div class="row">
+                                <div class="col-sm-10 col-10 text-center pr-5 pb-5">
+                                    <h1>Post Categories</h1>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-3 mt-5 mb-5">
+                                    <i class="fa fa-desktop fa-3x ml-5"></i><br>
+                                <a href="#" class="lead">Web Developer</a>
+                                <br>
+                                <div id="anchor">
+                                    <a href="#" class="text-danger">23, new jobs</a>
+                                </div>
+                                </div>
+                                <div class="col-md-3  mt-5">
+                                    <i class="fa fa-graduation-cap fa-3x ml-5"></i><br>
+                                <a href="#" class="lead">Graphic Desiging</a>
+                                <br>
+                                <div id="anchor">
+                                    <a href="#" class="text-danger">23, new jobs</a>
+                                </div>
+                                </div>
+                                <div class="col-md-3  mt-5">
+                                    <i class="fa fa-twitter fa-3x ml-4"></i><br>
+                                <a href="#" class="ml-0 lead" >Social Media</a>
+                                <div id="newjob">
+                                    <a href="" class="text-danger">23, new jobs</a>
+                                </div>
+                                </div>
+                                <div class="col-md-3  mt-5">
+                                    <i class="fa fa-male fa-3x ml-5"></i><br>
+                                <a href="#" class="ml-0 lead">Human Resources</a>
+                                <div id="newjob">
+                                    <a href="" class="text-danger">23, new jobs</a>
+                                </div>
+                                </div>
+                            </div>
+                        <div class="row">
+                            <div class="col-md-3 mt-5">
+                                <i class="fa fa-briefcase fa-3x ml-5"></i><br>
+                            <a href="#" class="lead">Business Developer</a>
+                            <br>
+                            <div id="anchor">
+                                <a href="#" class="text-danger">23, new jobs</a>
+                            </div>
+                            </div>
+                            <div class="col-md-3  mt-5">
+                                <i class="fa fa-wordpress fa-3x ml-5"></i><br>
+                            <a href="#" class="lead">WordPress Developer</a>
+                            <br>
+                            <div id="anchor">
+                                <a href="#" class="text-danger">23, new jobs</a>
+                            </div>
+                            </div>
+                            <div class="col-md-3  mt-5 ">
+                                <i class="fa fa-diamond fa-3x ml-5"></i><br>
+                            <a href="#" class="lead">Digital Marketing</a>
+                            <div id="newjob">
+                                <a href="" class="text-danger">23, new jobs</a>
+                            </div>
+                            </div>
+                            <div class="col-md-3  mt-5">
+                                <i class="fa fa-medkit fa-3x ml-5"></i><br>
+                            <a href="#" class="lead">Health & Insurance</a>
+                            <div id="newjob">
+                                <a href="" class="text-danger ml-1">23, new jobs</a>
+                            </div>
+                            </div>
+                        </div>
+                    </div>
         </div>
-        <div class="col-md-3">
-            <i class="fa-solid fa-user-doctor"></i>
-            <br>
-            <a href="#">Human Resources</a>
-            <div id="newjob">
-                <a href="">23, new jobs</a>
-               </div>
-        </div>
-    </div>
-    <div class="row mt-5">
-        <div class="col-md-3 mt-5">
-            <i class="fa-solid fa-tty"></i><br>
-           <a href="#">Business Developer</a>
-           <br>
-           <div id="anchor">
-            <a href="#">23, new jobs</a>
-           </div>
-        </div>
-        <div class="col-md-3  mt-5">
-            <i class="fa-solid fa-utensils"></i><br>
-           <a href="#">WordPress Developer</a>
-           <br>
-           <div id="anchor">
-            <a href="#">23, new jobs</a>
-           </div>
-        </div>
-        <div class="col-md-3  mt-5">
-            <i class="fa-solid fa-screwdriver-wrench"></i><br>
-           <a href="#" class="ml-1">Digital Marketing</a>
-           <div id="newjob">
-            <a href="">23, new jobs</a>
-           </div>
-        </div>
-        <div class="col-md-3  mt-5">
-            <i class="fa-solid fa-kit-medical"></i><br>
-           <a href="#" class="ml-1">Health & Insurance</a>
-           <div id="newjob">
-            <a href="">23, new jobs</a>
-           </div>
-        </div>
-    </div>
-   </div>
-     <div id="row">
-        <p>.</p>
-     </div>
-    </div>
-   </div>
-</body>
-</html>
+        <script src="assets/js/jquery-3.2.1.min.js"></script>
+        <script src="assets/js/popper.min.js"></script>
+        <script src="assets/js/bootstrap.min.js"></script>
+        <script src="assets/js/jquery.slimscroll.js"></script>
+        <script src="assets/js/Chart.bundle.js"></script>
+        <script src="assets/js/chart.js"></script>
+        <script src="assets/js/app.js"></script>
+    </body>
+    </html>
